@@ -36,7 +36,7 @@ A fast, clean and private password generator that runs entirely in your browser.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/securepass.git
+   git clone https://github.com/Haniabatool72/securepass.git
    ```
 2. Open the project folder and double-click `index.html` (no build step or dependencies needed).
 3. Move the slider to choose a password length.
