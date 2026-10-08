@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SecurePass – a fast, private password generator that runs entirely in your browser.">
+  <title>SecurePass – Password Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <header class="card__header">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      </div>
+      <h1>SecurePass</h1>
+      <p>Create strong passwords in one click. Nothing leaves your device.</p>
+    </header>
+
+    <section class="output" aria-label="Generated password">
+      <output id="password" class="output__text" aria-live="polite">Click “Generate password”</output>
+      <button id="copyBtn" class="icon-btn" type="button" aria-label="Copy password" title="Copy password">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+      </button>
+    </section>
+
+    <section class="strength" aria-label="Password strength">
+      <div class="strength__bar"><span id="strengthFill"></span></div>
+      <p class="strength__label">Strength: <strong id="strengthText">—</strong></p>
+    </section>
+
+    <section class="options">
+      <div class="length">
+        <label for="length">Password length</label>
+        <span id="lengthValue" class="length__value">16</span>
+      </div>
+      <input type="range" id="length" min="6" max="40" value="16">
+
+      <label class="check"><input type="checkbox" id="uppercase" checked><span class="check__box"></span>Uppercase letters (A–Z)</label>
+      <label class="check"><input type="checkbox" id="lowercase" checked><span class="check__box"></span>Lowercase letters (a–z)</label>
+      <label class="check"><input type="checkbox" id="numbers" checked><span class="check__box"></span>Numbers (0–9)</label>
+      <label class="check"><input type="checkbox" id="symbols"><span class="check__box"></span>Symbols (!@#$%)</label>
+    </section>
+
+    <p id="message" class="message" role="alert"></p>
+    <button id="generateBtn" class="btn" type="button">Generate password</button>
+  </main>
+
+  <footer class="footer">Developed by <strong>HANIA BATOOL</strong></footer>
+  <div id="toast" class="toast" role="status">Copied to clipboard</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

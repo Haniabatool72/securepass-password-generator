@@ -1,0 +1,177 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #0e1a2b;
+  --bg-glow: #17335a;
+  --card: #fbfcfe;
+  --ink: #10203a;
+  --muted: #5d6b82;
+  --line: #dde4ef;
+  --accent: #1f6feb;
+  --accent-dark: #174fb0;
+  --weak: #e5484d;
+  --fair: #f5a524;
+  --good: #3fb950;
+  --strong: #12a36b;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 16px;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 0%, var(--bg-glow), var(--bg) 60%);
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: 100%;
+  max-width: 460px;
+  padding: 32px 28px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  animation: rise 0.6s ease both;
+}
+
+.card__header { text-align: center; margin-bottom: 24px; }
+.card__header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+.card__header p { margin-top: 6px; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+
+.logo {
+  width: 52px; height: 52px; margin: 0 auto 12px;
+  display: grid; place-items: center;
+  color: #fff; background: var(--accent); border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+.card:hover .logo { transform: rotate(-6deg) scale(1.05); }
+
+/* ---------- Password output ---------- */
+.output {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 6px 6px 16px;
+  border: 1.5px solid var(--line); border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.output:hover { border-color: var(--accent); }
+
+.output__text {
+  flex: 1; min-width: 0;
+  font-family: "JetBrains Mono", monospace; font-size: 1.05rem;
+  word-break: break-all; padding: 10px 0;
+}
+.output__text.placeholder { color: var(--muted); font-family: "Manrope", sans-serif; font-size: 0.95rem; }
+
+.icon-btn {
+  flex-shrink: 0; width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: none; border-radius: 10px; cursor: pointer;
+  color: var(--accent); background: #eaf1fe;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.icon-btn:hover { background: var(--accent); color: #fff; }
+.icon-btn:active { transform: scale(0.92); }
+
+/* ---------- Strength meter ---------- */
+.strength { margin: 16px 0 24px; }
+.strength__bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.strength__bar span {
+  display: block; height: 100%; width: 0;
+  border-radius: 99px; background: var(--weak);
+  transition: width 0.5s ease, background 0.3s ease;
+}
+.strength__label { margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
+
+/* ---------- Options ---------- */
+.length { display: flex; justify-content: space-between; align-items: center; font-weight: 600; margin-bottom: 10px; }
+.length__value {
+  min-width: 42px; text-align: center; padding: 2px 10px;
+  background: #eaf1fe; color: var(--accent); border-radius: 99px; font-weight: 800;
+}
+
+input[type="range"] {
+  width: 100%; height: 6px; margin-bottom: 20px;
+  -webkit-appearance: none; appearance: none;
+  background: var(--line); border-radius: 99px; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px;
+  background: var(--accent); border: 3px solid #fff; border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3); transition: transform 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; background: var(--accent);
+  border: 3px solid #fff; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+.check {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 4px; cursor: pointer; font-size: 0.95rem;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.2s;
+}
+.check:hover { padding-left: 8px; }
+.check input { position: absolute; opacity: 0; }
+.check__box {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border: 2px solid #b8c4d8; border-radius: 6px;
+  display: grid; place-items: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.check__box::after {
+  content: ""; width: 5px; height: 10px;
+  border: solid #fff; border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0); margin-bottom: 2px;
+  transition: transform 0.15s ease;
+}
+.check input:checked + .check__box { background: var(--accent); border-color: var(--accent); }
+.check input:checked + .check__box::after { transform: rotate(45deg) scale(1); }
+.check input:focus-visible + .check__box { outline: 3px solid rgba(31,111,235,.35); }
+
+/* ---------- Buttons & messages ---------- */
+.message { min-height: 22px; margin: 10px 0 4px; font-size: 0.85rem; color: var(--weak); text-align: center; }
+
+.btn {
+  width: 100%; padding: 15px;
+  font: 800 1rem "Manrope", sans-serif; color: #fff;
+  background: var(--accent); border: none; border-radius: 12px; cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(31,111,235,.4); }
+.btn:active { transform: translateY(0); }
+
+button:focus-visible { outline: 3px solid rgba(31,111,235,.45); outline-offset: 2px; }
+
+/* ---------- Footer & toast ---------- */
+.footer { color: #a9b7cf; font-size: 0.9rem; }
+.footer strong { color: #fff; letter-spacing: 0.04em; }
+
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  padding: 12px 22px; border-radius: 99px;
+  background: var(--ink); color: #fff; font-size: 0.9rem; font-weight: 600;
+  opacity: 0; transform: translate(-50%, 20px); pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Responsive & accessibility ---------- */
+@media (max-width: 480px) {
+  .card { padding: 24px 18px; }
+  .card__header h1 { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
